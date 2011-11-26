@@ -1,0 +1,6 @@
+[submodule "lib"]
+	path = lib
+	url = https://spheenik@github.com/spheenik/phathom-lib.git
+[submodule "examples/css/lib"]
+	path = examples/css/lib
+	url = https://spheenik@github.com/spheenik/phathom-css-lib.git

@@ -25,9 +25,15 @@
 require "../../lib/Context.php";
 require "../../lib/StringContext.php";
 require "../../lib/Phathom.php";
-require "output/CSSTree.php";
-require "output/CSS.php";
-require "output/CSSValidator.php";
+require "lib/ValidationGenerator.php";
+require "lib/CSSSpecParser.php";
+
+//$genPath = ValidationGenerator::generate(array("all", "visual", "aural", "paged"), "output");
+$genPath = ValidationGenerator::generate(array("lithron"), "output");
+
+require $genPath."/CSSTree.php";
+require $genPath."/CSS.php";
+require $genPath."/CSSValidator.php";
 require "lib/CSSDeclarationContext.php";
 require "lib/CSSParser.php";
 
@@ -44,7 +50,11 @@ $c = new StringContext(file_get_contents("test/heise.css"));
 $result = CSSParser::run("S", $c);
 $end = microtime(true);
 
-echo ($result === true ? "sucessfully parsed, " : "failed to parse, ")."took ".(1000*($end-$start))."ms";
+echo ($result === true ? "sucessfully parsed, " : "failed to parse, ")."took ".(1000*($end-$start))."ms<br/><br/>";
+if ($result == true) {
+	$c->pop()->dump();
+}
+
 $c->dumpLog();
 
 ?>

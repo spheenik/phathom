@@ -33,7 +33,7 @@ class Calculator extends Phathom {
         return self::sequence(self::expression(), self::EOI);
     }
 
-    public function expressionRule() {
+    public static function expressionRule() {
         return self::sequence(
             self::term(),
             self::zeroOrMore(self::firstOf(
